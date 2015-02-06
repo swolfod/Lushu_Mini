@@ -51,18 +51,19 @@ def authCallback(request):
         link, content, session = utils.LoadHttpString(userInfoUrl, session=session, timeout=10)
         userInfo = json.loads(content)
 
-        unionid = userInfo["unionid"]
-        wechatAccount = djangoUtils.getOrNone(WechatAccount, unionid=unionid)
+        openid = userInfo["openid"]
+        wechatAccount = djangoUtils.getOrNone(WechatAccount, openid=openid)
         if not wechatAccount:
-            wechatAccount = WechatAccount(unionid=unionid)
+            wechatAccount = WechatAccount(openid=openid)
 
         wechatAccount.nickname = userInfo["nickname"]
-        wechatAccount.sex = int(userInfo["sex"]) == 1
-        wechatAccount.province = userInfo["province"]
-        wechatAccount.city = userInfo["city"]
-        wechatAccount.country = userInfo["country"]
-        wechatAccount.headimgurl = userInfo["headimgurl"]
-        wechatAccount.privilege = userInfo["privilege"]
+        wechatAccount.unionid = userInfo.get("unionid", None)
+        wechatAccount.sex = int(userInfo.get("sex", 1)) == 1
+        wechatAccount.province = userInfo.get("province", None)
+        wechatAccount.city = userInfo.get("city", None)
+        wechatAccount.country =  userInfo.get("country", None)
+        wechatAccount.headimgurl = userInfo.get("headimgurl", None)
+        wechatAccount.privilege = userInfo.get("privilege", None)
 
         wechatAccount.save()
 
@@ -71,11 +72,12 @@ def authCallback(request):
         redirectUrl = unquote(state) if state else "/"
         return HttpResponseRedirect(redirectUrl)
     except:
-        return authFailed(request, state)
+        #return authFailed(request, state)
+        raise
 
 
 def authFailed(request, state=""):
     if not state:
         state = request.GET.get("state", "")
 
-    return HttpResponseRedirect(wechatAuthUrl(request, state))
+    return HttpResponse("<h1>ERROR</h1>")

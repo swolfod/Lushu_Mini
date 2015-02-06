@@ -4,14 +4,15 @@ from django.db import models
 
 
 class WechatAccount(models.Model):
-    unionid         = models.CharField(max_length=255, unique=True)
+    openid          = models.CharField(max_length=255, unique=True)
+    unionid         = models.CharField(max_length=255, null=True, unique=True)
     nickname        = models.CharField(max_length=255)
     sex             = models.BooleanField(default=False)
-    province        = models.CharField(max_length=255)
-    city            = models.CharField(max_length=255)
-    country         = models.CharField(max_length=255)
-    headimgurl      = models.CharField(max_length=255)
-    privilege       = models.CharField(max_length=255)
+    province        = models.CharField(max_length=255, null=True)
+    city            = models.CharField(max_length=255, null=True)
+    country         = models.CharField(max_length=255, null=True)
+    headimgurl      = models.CharField(max_length=255, null=True)
+    privilege       = models.CharField(max_length=255, null=True)
 
     class Meta:
         app_label = "WechatApi"
