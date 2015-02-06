@@ -5,11 +5,11 @@ from WechatApi.models import WechatAccount
 
 
 class Question(models.Model):
-    question        = models.CharField()
-    imageUrl        = models.CharField()
+    question        = models.CharField(max_length=255)
+    imageUrl        = models.CharField(max_length=255)
 
     class Meta:
-        app_label = "PieceMini"
+        app_label = "Lushu_Mini"
 
 
 class Answer(models.Model):
@@ -19,4 +19,4 @@ class Answer(models.Model):
     likedBy         = models.ManyToManyField(WechatAccount, related_name="+")
 
     class Meta:
-        app_label = "PieceMini"
+        app_label = "Lushu_Mini"
