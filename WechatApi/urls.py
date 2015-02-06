@@ -4,5 +4,6 @@ __author__ = 'Swolfod'
 from django.conf.urls import *
 
 urlpatterns = patterns("WechatApi.views",
+                       (r"^wechatSignature/$", "wechatSignature"),
                        (r"^authCallback/$", "authCallback"),
                        )

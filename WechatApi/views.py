@@ -13,7 +13,7 @@ from .models import WechatAccount
 
 
 def wechatSignature(request):
-    echostr = request.Get.get("echostr")
+    echostr = request.GET.get("echostr")
     return HttpResponse(echostr)
 
 
