@@ -6,11 +6,11 @@ from django.shortcuts import HttpResponseRedirect
 from urllib.parse import quote_plus
 
 def authenticated(request):
-    code = request.session.get("code")
+    openid = request.session.get("openid")
     refreshToken = request.session.get("refreshToken")
     userInfo = request.session.get("userInfo")
 
-    return code is not None and refreshToken is not None and userInfo is not None
+    return openid is not None and refreshToken is not None and userInfo is not None
 
 
 def wechatAuthUrl(request, state=""):
