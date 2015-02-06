@@ -14,7 +14,7 @@ def authenticated(request):
 
 
 def wechatAuthUrl(request, state=""):
-    return "https://open.weixin.qq.com/connect/qrconnect?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_login&state={2}#wechat_redirect".format(
+    return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_base&state={3}#wechat_redirect".format(
         AppId,
         quote_plus(request.build_absolute_uri(reverse("WechatApi.views.authCallback"))),
         state

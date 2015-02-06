@@ -39,7 +39,7 @@ def authCallback(request):
         openid = accessInfo["openid"]
 
         request.session["accressToken"] = access_token
-        request.session["accessExpiry"] = datetime.datetime.now() + datetime.timedelta(0, accessExpires)
+        request.session["accessExpiry"] = (datetime.datetime.now() + datetime.timedelta(0, accessExpires)).strftime('%Y-%m-%d %H:%M:%S')
         request.session["refreshToken"] = accessInfo["refresh_token"]
         request.session["openid"] = openid
         request.session["scope"] = accessInfo["scope"]
@@ -47,7 +47,7 @@ def authCallback(request):
         # Refresh token expires in 30 days
         request.session.set_expiry(3600 * 24 * 30)
 
-        userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}".format(access_token, openid)
+        userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN".format(access_token, openid)
         link, content, session = utils.LoadHttpString(userInfoUrl, session=session, timeout=10)
         userInfo = json.loads(content)
 
@@ -66,7 +66,7 @@ def authCallback(request):
 
         wechatAccount.save()
 
-        request.session["userInfo"] = userInfo
+        request.session["userInfo"] = content
 
         redirectUrl = unquote(state) if state else "/"
         return HttpResponseRedirect(redirectUrl)
