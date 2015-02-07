@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  {% block pageTitle %}<title>{% trans "Lushu Map" %}</title>{% endblock %}
+</head>
+<body>
+  {% block baseBody %}{% endblock %}
+
+  <script src="{% static "js/jquery.min.js" %}"></script>
+</body>
+</html>

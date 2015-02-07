@@ -12,4 +12,10 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('Lushu_Mini.views',
     (r"^$", "selectQuestion"),
+    (r"^viewQuiz/(\d+)/$", "viewQuiz"),
+    (r"^viewQuiz/(\d+)/(\w+)/$", "viewQuiz"),
+    (r"^viewQuiz/(\d+)/(\w+)/(\w+)/$", "viewQuiz"),
+    (r"^answerQuiz/$", "answerQuiz"),
+    (r"^viewAnswers/(\d+)/$", "viewAnswers"),
+    (r"^ajLikeAnswer/(\d+)/$", "ajLikeAnswer"),
 )

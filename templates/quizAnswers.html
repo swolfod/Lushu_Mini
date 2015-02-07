@@ -1,0 +1,66 @@
+{% extends "defaultBase.html" %}
+
+{% load i18n %}
+{% load wechatTag %}
+
+{% block pageTitle %}<title>{% trans "Recommended Places" %}</title>{% endblock %}
+
+{% block baseBody %}
+  <div>
+    <p><img src="{% wechatAccountHeadImg quiz.quizzer.headimgurl 64 %}">{{ quiz.quizzer.nickname }}</p>
+    <p><b>{{ quiz.question.question }}</b></p>
+    <p>{{ quiz.question.description }}</p>
+  </div>
+
+  {% if myAnswer %}
+    <div>
+      <p><img src="{% wechatAccountHeadImg account.headimgurl 46 %}">{{ account.nickname }}</p>
+      <p><b>{{ myAnswer.answer }}</b> <span>{{ myAnswer.liked }}</span></p>
+      <p>{{ myAnswer.description }}</p>
+    </div>
+  {% endif %}
+
+  {% if answers %}
+    <ul>
+    {% for answer in answers %}
+      {% if not myAnswer or answer.id != myAnswer.id %}
+        <li>
+          <p><img src="{% wechatAccountHeadImg answer.answerer.headimgurl 46 %}">{{ answer.answerer.nickname }}</p>
+          <p>
+            <b>{{ answer.answer }}</b>
+            <span id="liked-{{ answer.id }}">{{ answer.liked }}</span>
+            {% if not answer.alreadyLiked %}
+              <a href="javascript:likeAnswer({{ answer.id }});">{% trans "Like" %}</a>
+            {% else %}
+              <span>{% trans "Liked" %}</span>
+            {% endif %}
+          </p>
+          <p>{{ answer.description }}</p>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+
+    <script>
+      function likeAnswer(answerId) {
+          $.ajax({
+            type: "get",
+            url: "{% url "Lushu_Mini.views.ajLikeAnswer" "0000000" %}".replace("0000000", answerId),
+            cache: false,
+            dataType: "json",
+            success: function(data){
+              if (!data.success) {
+                alert(data.result.errMsg);
+              }
+              else {
+                $("#liked-" + answerId).text(data.result.liked);
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert(errorThrown);
+            }
+          });
+      }
+    </script>
+  {% endif %}
+{% endblock %}

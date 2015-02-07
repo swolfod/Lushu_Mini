@@ -14,5 +14,8 @@ class WechatAccount(models.Model):
     headimgurl      = models.CharField(max_length=255, null=True)
     privilege       = models.CharField(max_length=255, null=True)
 
+    def __unicode__(self):
+        return self.nickname
+
     class Meta:
         app_label = "WechatApi"

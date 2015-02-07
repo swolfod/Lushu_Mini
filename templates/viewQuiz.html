@@ -1,0 +1,49 @@
+{% extends "defaultBase.html" %}
+
+{% load i18n %}
+{% load wechatTag %}
+
+{% block pageTitle %}<title>{% trans "Question" %}</title>{% endblock %}
+
+{% block baseBody %}
+    <div>
+        <img src="{{ question.imageUrl }}" />
+        <p><img src="{% wechatAccountHeadImg quizzer.headimgurl 64 %}">{{ quizzer.nickname }}</p>
+        <p><b>{{ question.question }}</b></p>
+        <p>{{ question.description }}</p>
+    </div>
+
+    <div>
+        {% if account.id == quizzer.id %}
+          {% if answered %}
+            <p><b>{{ answered }}</b> {% trans "Answers" %}</p>
+            <p><a href="#">{% trans "Go Checkout" %}</a></p>
+          {% else %}
+            {% if not followed %}
+              <p><a href="#">{% trans "Follow us and share your question to gather answers from your friends" %}</a></p>
+            {% endif %}
+
+            <p><a href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}">{% trans "Share and invite your friends to answer." %}</a></p>
+          {% endif %}
+        {% else %}
+          {% if answerer and answer and answerer.id != account.id %}
+            <p><img src="{% wechatAccountHeadImg answerer.headimgurl 64 %}">{{ answerer.nickname }}</p>
+            <p>{{ answer.answer }}</p>
+          {% endif %}
+
+          {% if myAnswer %}
+            <p><img src="{% wechatAccountHeadImg account.headimgurl 64 %}">{{ account.nickname }}</p>
+            <p>{{ myAnswer.answer }}</p>
+            <p><a href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Checkout what others are recommending." %}</a></p>
+          {% else %}
+            <form method="post" action="{% url "Lushu_Mini.views.answerQuiz" %}">
+                {% csrf_token %}
+                <input type="text" name="place" placeholder="{% trans "Recommend Place" %}" />
+                <input type="text" name="reason" placeholder="{% trans "Why this place" %}" />
+                <input type="hidden" name="quizId" value="{{ quizId }}" />
+                <input type="submit" value="Submit answer and see" />
+            </form>
+          {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

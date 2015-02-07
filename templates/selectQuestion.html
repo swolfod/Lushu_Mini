@@ -1,0 +1,14 @@
+{% extends "defaultBase.html" %}
+
+{% load i18n %}
+
+{% block pageTitle %}<title>{% trans "Select a Question" %}</title>{% endblock %}
+
+{% block baseBody %}
+  {% for question in questions %}
+    <div>
+        <img src="{{ question.imageUrl }}" />
+        <p><a href="{% url "Lushu_Mini.views.viewQuiz" question.id %}">{{ question.question }}</a></p>
+    </div>
+  {% endfor %}
+{% endblock %}

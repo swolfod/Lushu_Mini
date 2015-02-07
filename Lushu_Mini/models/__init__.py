@@ -1,3 +1,3 @@
 __author__ = 'swolfod'
 
-from .question import Question, Answer
+from .question import Question, Quiz, Answer

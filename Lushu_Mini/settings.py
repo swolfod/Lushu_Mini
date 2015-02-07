@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Lushu_Mini',
-    'WechatApi'
+    'WechatApi',
+    'utilities',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +49,18 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'utilities.djangoUtils.ForceDefaultLanguageMiddleware',
+    'utilities.djangoUtils.WsgiLogErrors',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages"
 )
 
 ROOT_URLCONF = 'Lushu_Mini.urls'
@@ -72,7 +85,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh_CN'
+LOCALE_PATHS =(os.path.join(os.path.dirname(__file__), '..', 'locale').replace('\\','/'),)
 
 TIME_ZONE = 'UTC'
 
@@ -88,6 +102,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static').replace('\\','/')),
+    ]
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
+
+
+WECHAT_DEBUG = True
