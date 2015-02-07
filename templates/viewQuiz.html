@@ -17,7 +17,7 @@
         {% if account.id == quizzer.id %}
           {% if answered %}
             <p><b>{{ answered }}</b> {% trans "Answers" %}</p>
-            <p><a href="#">{% trans "Go Checkout" %}</a></p>
+            <p><a href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Go Checkout" %}</a></p>
           {% else %}
             {% if not followed %}
               <p><a href="#">{% trans "Follow us and share your question to gather answers from your friends" %}</a></p>
