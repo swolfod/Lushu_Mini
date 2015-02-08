@@ -5,10 +5,17 @@
 {% block pageTitle %}<title>{% trans "Select a Question" %}</title>{% endblock %}
 
 {% block baseBody %}
-  {% for question in questions %}
-    <div>
-        <img src="{{ question.imageUrl }}" />
-        <p><a href="{% url "Lushu_Mini.views.viewQuiz" question.id %}">{{ question.question }}</a></p>
-    </div>
-  {% endfor %}
+    <header id="questionListHeader">
+        <p>情人节，不落单</p>
+        <p>快邀姐妹们贡献私家地址吧！</p>
+    </header>
+    <ul class="list" id="questionList">
+        {% for question in questions %}
+        <li>
+            <div class="icon">
+                <a href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}"><img src="{{ question.imageUrl }}"/></a>
+            </div>
+            <h5><img src="/static/img/地标{{question.id}}.png"/>{{ question.question }}</h5>
+        {% endfor %}
+    </ul>
 {% endblock %}

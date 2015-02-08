@@ -6,40 +6,53 @@
 {% block pageTitle %}<title>{% trans "Recommended Places" %}</title>{% endblock %}
 
 {% block baseBody %}
+    <header id="questionHeader">
+        <img src="{{ quiz.question.imageUrl }}" />
+    </header>
   <div>
-    <p><img src="{% wechatAccountHeadImg quiz.quizzer.headimgurl 64 %}">{{ quiz.quizzer.nickname }}</p>
-    <p><b>{{ quiz.question.question }}</b></p>
-    <p>{{ quiz.question.description }}</p>
+      <h1 id="question"><img src="{% wechatAccountHeadImg quiz.quizzer.headimgurl 64 %}"/>{{ quiz.question.question }}</h1>
+      <p id="description">{{ quiz.question.description }}</p>
   </div>
 
-  {% if myAnswer %}
-    <div>
-      <p><img src="{% wechatAccountHeadImg account.headimgurl 46 %}">{{ account.nickname }}</p>
-      <p><b>{{ myAnswer.answer }}</b> <span>{{ myAnswer.liked }}</span></p>
-      <p>{{ myAnswer.description }}</p>
-    </div>
-  {% endif %}
-
-  {% if answers %}
-    <ul>
-    {% for answer in answers %}
-      {% if not myAnswer or answer.id != myAnswer.id %}
+    <ul class="list" id="answerList">
+        {% if myAnswer %}
         <li>
-          <p><img src="{% wechatAccountHeadImg answer.answerer.headimgurl 46 %}">{{ answer.answerer.nickname }}</p>
-          <p>
-            <b>{{ answer.answer }}</b>
-            <span id="liked-{{ answer.id }}">{{ answer.liked }}</span>
-            {% if not answer.alreadyLiked %}
-              <a href="javascript:likeAnswer({{ answer.id }});">{% trans "Like" %}</a>
-            {% else %}
-              <span>{% trans "Liked" %}</span>
-            {% endif %}
-          </p>
-          <p>{{ answer.description }}</p>
+            <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
+            <div class="answerContent">
+                <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                <p>【{{ myAnswer.answer }}】{{ myAnswer.description }}</p>
+            </div>
+            <div class="love">
+                <img src="/static/img/love.jpg"/>
+                <p>{{ myAnswer.liked }}</p>
+            </div>
         </li>
-      {% endif %}
-    {% endfor %}
+        <li class="dividing"><span>他们推荐的</span></li>
+        {% endif %}
+        {% if answers %}
+            {% for answer in answers %}
+            {% if not myAnswer or answer.id != myAnswer.id %}
+            <li>
+                <img src="{% wechatAccountHeadImg answer.answerer.headimgurl 46 %}">
+                <div class="answerContent">
+                    <h2><a href="#">{{ answer.answerer.nickname }}</a><span>2-6 12:32</span></h2>
+                    <p>【{{ answer.answer }}】{{ answer.description }}</p>
+                </div>
+                <div class="love">
+                    {% if not answer.alreadyLiked %}
+                        <img src="/static/img/love.jpg" onClick="likeAnswer({{ answer.id }});" />
+                    {% else %}
+                        <img src="/static/img/love.jpg"/>
+                    {% endif %}
+                    <p id="liked-{{ answer.id }}" >{{ answer.liked }}</p>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
     </ul>
+
+{% endif %}
+
 
     <script>
       function likeAnswer(answerId) {
@@ -62,5 +75,4 @@
           });
       }
     </script>
-  {% endif %}
 {% endblock %}

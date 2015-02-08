@@ -38,7 +38,7 @@ def alreadyLiked(account, answer):
 
 
 def likeAnswer(account, answer):
-    if answer.answerer_id != account.id and not alreadyLiked:
+    if answer.answerer_id != account.id and not alreadyLiked(account, answer):
         answer.liked += 1
         answer.likedBy.add(account)
         saveEntity(answer)

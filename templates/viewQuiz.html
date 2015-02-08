@@ -6,13 +6,13 @@
 {% block pageTitle %}<title>{% trans "Question" %}</title>{% endblock %}
 
 {% block baseBody %}
-    <div>
+    <header id="questionHeader">
         <img src="{{ question.imageUrl }}" />
-        <p><img src="{% wechatAccountHeadImg quizzer.headimgurl 64 %}">{{ quizzer.nickname }}</p>
-        <p><b>{{ question.question }}</b></p>
-        <p>{{ question.description }}</p>
+    </header>
+    <div>
+        <h1 id="question"><img src="{% wechatAccountHeadImg quizzer.headimgurl 64 %}"/>{{ question.question }}</h1>
+        <p id="description">{{ question.description }}</p>
     </div>
-
     <div>
         {% if account.id == quizzer.id %}
           {% if answered %}
@@ -20,28 +20,60 @@
             <p><a href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Go Checkout" %}</a></p>
           {% else %}
             {% if not followed %}
-              <p><a href="#">{% trans "Follow us and share your question to gather answers from your friends" %}</a></p>
-            {% endif %}
 
-            <p><a href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}">{% trans "Share and invite your friends to answer." %}</a></p>
+              <p><a href="#" class="longButton">{% trans "Follow us and share your question to gather answers from your friends" %}</a></p>
+            {% endif %}
+            <div id="tip">
+                <p>点击右上角，发送给朋友或是分享到朋友圈。开始收集答案吧！</p>
+                <p>tip:可以在【路书】公众账号查看自己的回答哦。</p>
+            </div>
+            <p><a  class="longButton" href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}">{% trans "Share and invite your friends to answer." %}</a></p>
           {% endif %}
         {% else %}
           {% if answerer and answer and answerer.id != account.id %}
-            <p><img src="{% wechatAccountHeadImg answerer.headimgurl 64 %}">{{ answerer.nickname }}</p>
+            <ul class="list" id="answerList">
+                <li>
+                    <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
+                    <div class="answerContent">
+                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <p>【 {{ answer.answer }} 】{{ answer.description }}</p>
+                    </div>
+                    <div class="love">
+                        <img src="/static/img/love.jpg"/>
+                        <p>{{ answer.liked }}</p>
+                    </div>
+                </li>
+            </ul>
             <p>{{ answer.answer }}</p>
           {% endif %}
 
           {% if myAnswer %}
-            <p><img src="{% wechatAccountHeadImg account.headimgurl 64 %}">{{ account.nickname }}</p>
-            <p>{{ myAnswer.answer }}</p>
-            <p><a href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Checkout what others are recommending." %}</a></p>
+            <ul class="list" id="answerList">
+                <li>
+                    <img src="{% wechatAccountHeadImg account.headimgurl 64 %}">
+                    <div class="answerContent">
+                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <p>【 {{ myAnswer.answer }} 】{{ answer.description }}</p>
+                    </div>
+                    <div class="love">
+                        <img src="/static/img/love.jpg"/>
+                        <p>{{ answer.liked }}</p>
+                    </div>
+                    <p><a class="longButton" href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Checkout what others are recommending." %}</a></p>
+
+                </li>
+            </ul>
           {% else %}
             <form method="post" action="{% url "Lushu_Mini.views.answerQuiz" %}">
                 {% csrf_token %}
-                <input type="text" name="place" placeholder="{% trans "Recommend Place" %}" />
-                <input type="text" name="reason" placeholder="{% trans "Why this place" %}" />
+                <div id="location">
+                    <img src="/static/img/地标{{question.id}}.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
+                </div>
+                <div id="result">
+                    <textarea name="reason" >写下理由</textarea>
+                    <input type="submit" value="分享并查看朋友推荐的地址" />
+                </div>
                 <input type="hidden" name="quizId" value="{{ quizId }}" />
-                <input type="submit" value="Submit answer and see" />
             </form>
           {% endif %}
         {% endif %}
