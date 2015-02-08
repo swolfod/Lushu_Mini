@@ -308,4 +308,13 @@ input,textarea{
     font-size: 14px;
     margin: 10px 20px;
 }
-
+.haveAnswer{
+    text-align: center;
+    margin-top: 10px;
+}
+.haveAnswer>b{
+    text-align: center;
+    color: #f00;
+    font-size: 16px;
+    font-weight: bolder;
+}

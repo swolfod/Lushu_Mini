@@ -16,8 +16,8 @@
     <div>
         {% if account.id == quizzer.id %}
           {% if answered %}
-            <p><b>{{ answered }}</b> {% trans "Answers" %}</p>
-            <p><a href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Go Checkout" %}</a></p>
+            <p class="haveAnswer">已经有<b>{{ answered }}</b> {% trans "Answers" %}</p>
+            <p><a  class="longButton" href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Go Checkout" %}</a></p>
           {% else %}
             {% if not followed %}
 
