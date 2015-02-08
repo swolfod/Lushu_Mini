@@ -35,6 +35,7 @@ class Answer(models.Model):
     description     = models.CharField(max_length=255)
     liked           = models.IntegerField()
     likedBy         = models.ManyToManyField(WechatAccount, related_name="+")
+    created         = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         app_label = "Lushu_Mini"

@@ -73,3 +73,6 @@ msgstr "推荐地点"
 #: templates/viewQuiz.html:42
 msgid "Why this place"
 msgstr "推荐理由"
+
+msgid "Pleace recommend a place first."
+msgstr "请先推荐一个地方"

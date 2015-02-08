@@ -302,6 +302,7 @@ input,textarea{
     width: 200px;
     background-color: rgba(179, 179, 179, 0.4);
     border-radius: 10px;
+    display: none;
 }
 #tip>p{
     color: #000000;

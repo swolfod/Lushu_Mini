@@ -19,7 +19,7 @@
         <li>
             <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
             <div class="answerContent">
-                <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                <h2><a href="#">{{ account.nickname }}</a><span>{{ myAnswer.created|date:'m-d H:i' }}</span></h2>
                 <p>【{{ myAnswer.answer }}】{{ myAnswer.description }}</p>
             </div>
             <div class="love">
@@ -35,7 +35,7 @@
             <li>
                 <img src="{% wechatAccountHeadImg answer.answerer.headimgurl 46 %}">
                 <div class="answerContent">
-                    <h2><a href="#">{{ answer.answerer.nickname }}</a><span>2-6 12:32</span></h2>
+                    <h2><a href="#">{{ answer.answerer.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
                     <p>【{{ answer.answer }}】{{ answer.description }}</p>
                 </div>
                 <div class="love">
@@ -54,7 +54,7 @@
 {% endif %}
 <div id="blank"></div>
 <div id="sideBar">
-    <button onclick="window.open('/')" >我还要问</button><button onclick="window.open('/')" >分享</button>
+    <button onclick="window.open('/')" >我还要问</button><button onclick="$('#tip').fadeIn();" >分享</button>
 </div>
 
     <script>
