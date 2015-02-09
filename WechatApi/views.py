@@ -19,7 +19,7 @@ def authCallback(request):
         return authFailed(request, state)
 
     try:
-        refreshWechatToken(code)
+        refreshWechatToken(request, code=code)
         redirectUrl = unquote(state) if state else "/"
         return HttpResponseRedirect(redirectUrl)
     except:
