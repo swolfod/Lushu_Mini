@@ -64,8 +64,12 @@ def LoadHttpString(link, postData={}, encoding=None, session=None, headers=None,
                 res = session.post(link, data=postData, headers=requestHeaders, timeout=timeout)
             else:
                 res = session.get(link, headers=requestHeaders, timeout=timeout)
+
+            if encoding:
+                res.encoding = encoding
             docContent = res.text
-            if not encoding:
+
+            """if not encoding:
                 contentType = res.headers['content-type'] if 'content-type' in res.headers else None
 
                 if not (contentType and contentType.find('charset=') >= 0):
@@ -82,7 +86,7 @@ def LoadHttpString(link, postData={}, encoding=None, session=None, headers=None,
                 try:
                     docContent = docContent.decode(encoding)
                 except:
-                    pass
+                    pass"""
 
             return res.url, docContent, session
         except Exception as e:

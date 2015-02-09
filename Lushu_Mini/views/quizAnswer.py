@@ -51,11 +51,17 @@ def viewAnswers(request, quizId):
         if answer.answerer_id != account.id:
             answer.alreadyLiked = dataUtils.alreadyLiked(account, answer)
 
+    if myAnswer:
+        shareUrl = reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid, account.openid))
+    else:
+        shareUrl = reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid))
+
     return secureRender(request, "quizAnswers.html", {
         "quiz": quiz,
         "account": account,
         "myAnswer": myAnswer,
-        "answers": answers
+        "answers": answers,
+        "shareUrl": shareUrl
     })
 
 

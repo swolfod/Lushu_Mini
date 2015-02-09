@@ -31,7 +31,7 @@ def authCallback(request):
             code
         )
 
-        link, content, session = utils.LoadHttpString(accessUrl, timeout=10)
+        link, content, session = utils.LoadHttpString(accessUrl, encoding="utf-8", timeout=10)
         accessInfo = json.loads(content)
 
         access_token = accessInfo["access_token"]
@@ -48,7 +48,7 @@ def authCallback(request):
         request.session.set_expiry(3600 * 24 * 30)
 
         userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN".format(access_token, openid)
-        link, content, session = utils.LoadHttpString(userInfoUrl, session=session, timeout=10)
+        link, content, session = utils.LoadHttpString(userInfoUrl, session=session, encoding="utf-8", timeout=10)
         userInfo = json.loads(content)
 
         openid = userInfo["openid"]
