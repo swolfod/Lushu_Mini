@@ -44,7 +44,7 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 }
 #questionListHeader{
 	text-align: center;
-	padding: 50px 0px 30px 0px;
+    padding: 20px 20px;
 }
 #questionListHeader>p{
 	color: #999;
@@ -54,7 +54,7 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
   	font-weight: bolder;
 }
 #questionList{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 #questionList>li{
 	display: inline-block;
@@ -335,4 +335,50 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 }
 #questionBox{
     margin-bottom: 50px;
+}
+
+/** 屏幕自适应 **/
+
+@media screen and (max-height:500px){
+    #questionListHeader{
+        padding: 10px 20px;
+    }
+    #questionListHeader>p{
+        font-size: 18px;
+        height: 20px;
+        line-height: 20px;
+        font-weight: bolder;
+        margin: 10px;
+    }
+    #questionHeader{
+        height: 200px;
+    }
+    #questionHeader>img {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-height:570px){
+    #questionListHeader{
+        padding: 15px 20px;
+    }
+    #questionListHeader>p{
+        font-size: 20px;
+        height: 26px;
+        line-height: 26px;
+        font-weight: bolder;
+        margin: 10px 0px;
+    }
+    #questionHeader{
+        height: 200px;
+    }
+    #questionHeader>img {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (min-height:600px){
+    #questionList{
+        margin: 30px 0px;
+    }
 }
