@@ -21,6 +21,9 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
     -webkit-appearance: caret;
     -moz-appearance: caret; /* mobile firefox too! */
 }
+:focus {
+    outline: none;
+}
 .loading{
 	position: fixed;
 	top: 0px;
