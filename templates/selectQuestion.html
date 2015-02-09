@@ -15,7 +15,7 @@
             <div class="icon">
                 <a href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}"><img src="{{ question.imageUrl }}"/></a>
             </div>
-            <h5><img src="/static/img/地标{{question.id}}.png"/>{{ question.question }}</h5>
+            <h5><img src="/static/img/地标{{forloop.counter}}.png"/>{{ question.question }}</h5>
         {% endfor %}
     </ul>
 {% endblock %}
