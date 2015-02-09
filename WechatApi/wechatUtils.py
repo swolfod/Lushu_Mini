@@ -10,7 +10,7 @@ from django.conf import settings
 from uuid import uuid1
 from random import randint
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 WECHAT_DEBUG = getattr(settings, "WECHAT_DEBUG", True)
 
@@ -94,7 +94,7 @@ def refreshWechatToken(request, code=None, refreshToken=None):
     openid = accessInfo["openid"]
 
     request.session["accessToken"] = access_token
-    request.session["accessExpiry"] = (datetime.datetime.now() + datetime.timedelta(0, accessExpires)).strftime('%Y-%m-%d %H:%M:%S')
+    request.session["accessExpiry"] = (datetime.now() + timedelta(0, accessExpires)).strftime('%Y-%m-%d %H:%M:%S')
     request.session["refreshToken"] = accessInfo["refresh_token"]
     request.session["openid"] = openid
     request.session["scope"] = accessInfo["scope"]
