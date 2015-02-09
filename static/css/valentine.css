@@ -12,6 +12,15 @@ l.list>li{
 input,textarea{
 	outline: none;
 }
+input[type=submit], input[type=Reset]{
+    -webkit-appearance:none;
+    -webkit-border-radius:0;
+    border-radius:0;
+}
+input[type="text"], input[type="email"], input[type="search"], input[type="password"],textarea {
+    -webkit-appearance: caret;
+    -moz-appearance: caret; /* mobile firefox too! */
+}
 .loading{
 	position: fixed;
 	top: 0px;
@@ -42,6 +51,7 @@ input,textarea{
   	font-weight: bolder;
 }
 #questionList{
+    margin-bottom: 30px;
 }
 #questionList>li{
 	display: inline-block;
@@ -61,12 +71,13 @@ input,textarea{
 	margin-right: 8px;
 }
 #questionList>li>h5{
-	text-align: left;
-	height: 40px;
-	line-height: 20px;
-	font-size: 14px;
-	color: #999;
-	margin: 10px 20px;
+    text-align: left;
+    height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #999;
+    margin: 10px auto;
+    width: 135px;
 }
 /*  虚化背景 */
 .back{
@@ -173,7 +184,7 @@ input,textarea{
 	box-sizing: border-box;
 }
 #result{
-	margin: 10px 20px;
+	margin: 10px 20px 30px 10px;
 
 }
 #result>textarea{
@@ -210,7 +221,7 @@ input,textarea{
 	height: 36px;
 	top: 2px;
 	left: 2px;
-	border-radius: 18px;
+	border-radius: 6px;
 }
 .answerContent{
 	margin-left: 45px;
@@ -300,7 +311,7 @@ input,textarea{
     right: 20px;
     height: 120px;
     width: 200px;
-    background-color: rgba(179, 179, 179, 0.4);
+    background-color: rgba(179, 179, 179, 0.6);
     border-radius: 10px;
     display: none;
 }
