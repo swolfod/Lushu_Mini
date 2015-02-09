@@ -44,6 +44,9 @@ def viewAnswers(request, quizId):
     myAnswer = dataUtils.getAnswer(quiz, account)
     answers = dataUtils.getAllAnswers(quiz)
 
+    if account.id != quiz.quizzer_id and not myAnswer:
+        return HttpResponseRedirect(reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid)))
+
     for answer in answers:
         if answer.answerer_id != account.id:
             answer.alreadyLiked = dataUtils.alreadyLiked(account, answer)

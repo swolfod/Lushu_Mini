@@ -28,6 +28,7 @@
                 <p>tip:可以在【路书】公众账号查看自己的回答哦。</p>
             </div>
             <p><a id="share" class="longButton" >{% trans "Share and invite your friends to answer." %}</a></p>
+            <p><a  class="longButton" href="{% url "Lushu_Mini.views.viewQuiz" question.id account.openid %}">{% trans "Share and invite your friends to answer." %}</a></p>
           {% endif %}
         {% else %}
           {% if answerer and answer and answerer.id != account.id %}
@@ -64,17 +65,27 @@
                 </li>
             </ul>
           {% else %}
-            <form method="post" action="{% url "Lushu_Mini.views.answerQuiz" %}">
+            <form method="post" onsubmit="return checkPlace();" action="{% url "Lushu_Mini.views.answerQuiz" %}">
                 {% csrf_token %}
                 <div id="location">
                     <img src="/static/img/地标{{question.id}}.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
                 </div>
                 <div id="result">
-                    <textarea name="reason" >写下理由</textarea>
+                    <textarea name="reason" placeholder="写下理由"></textarea>
                     <input type="submit" value="分享并查看朋友推荐的地址" />
                 </div>
                 <input type="hidden" name="quizId" value="{{ quizId }}" />
             </form>
+
+            <script>
+              function checkPlace() {
+                var place = $("input[name='place']").val().trim();
+                if (!place) {
+                  alert("{% trans "Pleace recommend a place first." %}");
+                  return false;
+                }
+              }
+            </script>
           {% endif %}
         {% endif %}
     </div>
