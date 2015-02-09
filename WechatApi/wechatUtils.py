@@ -50,11 +50,12 @@ def getAccountById(openid):
 
 def getCurrentAccount(request):
     openid = request.session.get("openid")
-    accessToken = request.session.get("accessToken")
-    accessExpiry = request.session.get("accessExpiry")
-    if not accessToken or not accessExpiry or datetime.strptime(accessExpiry, '%Y-%m-%d %H:%M:%S') < datetime.now():
-        refreshWechatToken(request, refreshToken=request.session["refreshToken"])
-        openid = request.session["openid"]
+    if not WECHAT_DEBUG:
+        accessToken = request.session.get("accessToken")
+        accessExpiry = request.session.get("accessExpiry")
+        if not accessToken or not accessExpiry or datetime.strptime(accessExpiry, '%Y-%m-%d %H:%M:%S') < datetime.now():
+            refreshWechatToken(request, refreshToken=request.session["refreshToken"])
+            openid = request.session["openid"]
 
     account = getAccountById(openid)
 
