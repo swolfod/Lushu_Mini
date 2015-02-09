@@ -6,10 +6,10 @@
 {% block pageTitle %}<title>{% trans "Recommended Places" %}</title>{% endblock %}
 
 {% block baseBody %}
-    <header id="questionHeader">
+    <!--<header id="questionHeader">
         <img src="{{ quiz.question.imageUrl }}" />
-    </header>
-  <div>
+    </header>-->
+  <div id="questionBox">
       <h1 id="question"><img src="{% wechatAccountHeadImg quiz.quizzer.headimgurl 64 %}"/>{{ quiz.question.question }}</h1>
       <p id="description">{{ quiz.question.description }}</p>
   </div>
