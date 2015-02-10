@@ -71,7 +71,7 @@
             <form method="post" onsubmit="return checkPlace();" action="{% url "Lushu_Mini.views.answerQuiz" %}">
                 {% csrf_token %}
                 <div id="location">
-                    <img src="/static/img/地标{{question.id}}.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
+                    <img src="/static/img/地标1.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
                 </div>
                 <div id="result">
                     <textarea name="reason" placeholder="写下理由"></textarea>
