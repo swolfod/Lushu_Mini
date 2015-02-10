@@ -32,5 +32,6 @@ def viewQuiz(request, questionId, quizzerId=None, answererId=None):
         "answerer": answerer,
         "answer": answer,
         "answered": answered,
-        "toShare": toShare
+        "toShare": toShare,
+        "shareUrl": request.build_absolute_uri()
     })

@@ -52,9 +52,9 @@ def viewAnswers(request, quizId):
             answer.alreadyLiked = dataUtils.alreadyLiked(account, answer)
 
     if myAnswer:
-        shareUrl = reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid, account.openid))
+        shareUrl = request.build_absolute_uri(reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid, account.openid)))
     else:
-        shareUrl = reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid))
+        shareUrl = request.build_absolute_uri(reverse("Lushu_Mini.views.viewQuiz", args=(quiz.question_id, quiz.quizzer.openid)))
     shareUrl  += "?toShare=1"
 
     return secureRender(request, "quizAnswers.html", {
