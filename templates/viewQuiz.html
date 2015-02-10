@@ -39,7 +39,7 @@
                 <li>
                     <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
                     <div class="answerContent">
-                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <h2><a href="#">{{ account.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
                         <p>【 {{ answer.answer }} 】{{ answer.description }}</p>
                     </div>
                     <div class="love">
@@ -56,7 +56,7 @@
                 <li>
                     <img src="{% wechatAccountHeadImg account.headimgurl 64 %}">
                     <div class="answerContent">
-                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <h2><a href="#">{{ account.nickname }}</a><span>{{ myAnswer.created|date:'m-d H:i' }}</span></h2>
                         <p>【 {{ myAnswer.answer }} 】{{ answer.description }}</p>
                     </div>
                     <div class="love">
