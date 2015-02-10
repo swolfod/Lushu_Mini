@@ -388,3 +388,7 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
         margin: 30px 0px;
     }
 }
+
+.wechatThumb {
+  display: none;
+}
