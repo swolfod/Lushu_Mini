@@ -3,7 +3,9 @@
 {% load i18n %}
 {% load wechatTag %}
 
-{% block pageTitle %}<title>{% trans "Question" %}</title>{% endblock %}
+{% block pageTitle %}<title>{{ question.question }}</title>{% endblock %}
+
+{% block wechatThumb %}<img src="{{ question.imageUrl }}" />{% endblock %}
 
 {% block baseBody %}
     <header id="questionHeader">
