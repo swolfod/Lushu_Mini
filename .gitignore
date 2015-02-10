@@ -2,3 +2,5 @@ __pychache__/
 *.pyc
 .idea/
 .idea/*
+.DS_Store
+
