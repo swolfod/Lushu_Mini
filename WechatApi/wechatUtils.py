@@ -39,7 +39,7 @@ def requireWechatAuth(oriFunc):
         if authenticated(request):
             return oriFunc(request,  *args, **kwargs)
 
-        return HttpResponseRedirect(wechatAuthUrl(request, quote_plus(request.build_absolute_uri())))
+        return HttpResponseRedirect(wechatAuthUrl(request, quote_plus(request.get_full_path())))
 
     return wrapper
 
