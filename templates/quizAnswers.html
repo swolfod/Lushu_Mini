@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load wechatTag %}
 
-{% block pageTitle %}<title>{% trans "Recommended Places" %}</title>{% endblock %}
+{% block pageTitle %}<title>{{ quiz.question.question }}</title>>{% endblock %}
 
 {% block wechatThumb %}<img src="{{ quiz.question.imageUrl }}" />{% endblock %}
 

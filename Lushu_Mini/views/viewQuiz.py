@@ -20,6 +20,8 @@ def viewQuiz(request, questionId, quizzerId=None, answererId=None):
     myAnswer = dataUtils.getAnswer(quiz, account)
     answered = quiz.answers.count()
 
+    toShare = int(request.GET.get("toShare", 0))
+
     return secureRender(request, "viewQuiz.html", {
         "quizId": quiz.id,
         "account": account,
@@ -29,5 +31,6 @@ def viewQuiz(request, questionId, quizzerId=None, answererId=None):
         "myAnswer": myAnswer,
         "answerer": answerer,
         "answer": answer,
-        "answered": answered
+        "answered": answered,
+        "toShare": toShare
     })

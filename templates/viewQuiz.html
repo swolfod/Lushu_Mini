@@ -37,9 +37,9 @@
           {% if answerer and answer and answerer.id != account.id %}
             <ul class="list" id="answerList">
                 <li>
-                    <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
+                    <img src="{% wechatAccountHeadImg answerer.headimgurl 46 %}">
                     <div class="answerContent">
-                        <h2><a href="#">{{ account.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
+                        <h2><a href="#">{{ answerer.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
                         <p>【 {{ answer.answer }} 】{{ answer.description }}</p>
                     </div>
                     <div class="love">
@@ -93,10 +93,17 @@
         {% endif %}
     </div>
 <script>
-    $(function(){
-        $("#share").click(function(){
-            $("#tip").show();
+
+    {% if toShare %}
+        $(document).ready(function() {
+            $("#tip").fadeIn();
         });
-    });
+    {% else %}
+        $(function(){
+            $("#share").click(function(){
+                $("#tip").fadeIn();
+            });
+        });
+    {% endif %}
 </script>
 {% endblock %}
