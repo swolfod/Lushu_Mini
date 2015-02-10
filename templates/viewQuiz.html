@@ -37,9 +37,9 @@
           {% if answerer and answer and answerer.id != account.id %}
             <ul class="list" id="answerList">
                 <li>
-                    <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
+                    <img src="{% wechatAccountHeadImg answerer.headimgurl 46 %}">
                     <div class="answerContent">
-                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <h2><a href="#">{{ answerer.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
                         <p>【 {{ answer.answer }} 】{{ answer.description }}</p>
                     </div>
                     <div class="love">
@@ -56,7 +56,7 @@
                 <li>
                     <img src="{% wechatAccountHeadImg account.headimgurl 64 %}">
                     <div class="answerContent">
-                        <h2><a href="#">{{ account.nickname }}</a><span>2-6 12:32</span></h2>
+                        <h2><a href="#">{{ account.nickname }}</a><span>{{ myAnswer.created|date:'m-d H:i' }}</span></h2>
                         <p>【 {{ myAnswer.answer }} 】{{ answer.description }}</p>
                     </div>
                     <div class="love">
@@ -71,7 +71,7 @@
             <form method="post" onsubmit="return checkPlace();" action="{% url "Lushu_Mini.views.answerQuiz" %}">
                 {% csrf_token %}
                 <div id="location">
-                    <img src="/static/img/地标{{question.id}}.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
+                    <img src="/static/img/地标1.png"/><div><input type="text" name="place" placeholder="{% trans "Recommend Place" %}" /></div>
                 </div>
                 <div id="result">
                     <textarea name="reason" placeholder="写下理由"></textarea>
@@ -93,10 +93,17 @@
         {% endif %}
     </div>
 <script>
-    $(function(){
-        $("#share").click(function(){
-            $("#tip").show();
+
+    {% if toShare %}
+        $(document).ready(function() {
+            $("#tip").fadeIn();
         });
-    });
+    {% else %}
+        $(function(){
+            $("#share").click(function(){
+                $("#tip").fadeIn();
+            });
+        });
+    {% endif %}
 </script>
 {% endblock %}

@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lushu_mini',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': '1q2w3e4r',
         'HOST': '127.0.0.1',
         'PORT': ''
     }
@@ -112,3 +112,9 @@ TEMPLATE_DIRS = (
 
 
 WECHAT_DEBUG = True
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}

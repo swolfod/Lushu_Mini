@@ -6,9 +6,10 @@
 <head lang="en">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  {% block pageTitle %}<title>{% trans "Lushu Map" %}</title>{% endblock %}
+  {% block pageTitle %}<title>{% trans "Lushu Map" %}点击推荐！</title>{% endblock %}
   <link rel="stylesheet" type="text/css" href="{% static "css/valentine.css" %}">
   <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
   <div class="wechatThumb">
@@ -20,5 +21,6 @@
     <p>tip:可以在【路书】公众账号查看自己的回答哦。</p>
   </div>
   {% block baseBody %}{% endblock %}
+
 </body>
 </html>
