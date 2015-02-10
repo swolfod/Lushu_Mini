@@ -1,6 +1,7 @@
 {% extends "defaultBase.html" %}
 
 {% load i18n %}
+{% load tz %}
 {% load wechatTag %}
 
 {% block pageTitle %}<title>{{ quiz.question.question }}点击推荐！</title>{% endblock %}
@@ -21,7 +22,9 @@
         <li>
             <img src="{% wechatAccountHeadImg account.headimgurl 46 %}">
             <div class="answerContent">
+            {% localtime on %}
                 <h2><a href="#">{{ account.nickname }}</a><span>{{ myAnswer.created|date:'m-d H:i' }}</span></h2>
+            {% endlocaltime %}
                 <p>【{{ myAnswer.answer }}】{{ myAnswer.description }}</p>
             </div>
             <div class="love">
@@ -37,7 +40,9 @@
             <li>
                 <img src="{% wechatAccountHeadImg answer.answerer.headimgurl 46 %}">
                 <div class="answerContent">
-                    <h2><a href="#">{{ answer.answerer.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
+                    {% localtime on %}
+                        <h2><a href="#">{{ answer.answerer.nickname }}</a><span>{{ answer.created|date:'m-d H:i' }}</span></h2>
+                    {% endlocaltime %}
                     <p>【{{ answer.answer }}】{{ answer.description }}</p>
                 </div>
                 <div class="love">
