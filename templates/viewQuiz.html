@@ -15,6 +15,7 @@
     </div>
     <div>
         {% if account.id == quizzer.id %}
+          <div id="GuideBox">
           {% if answered %}
             <p class="haveAnswer">已经有<b>{{ answered }}</b> {% trans "Answers" %}</p>
             <p><a  class="longButton" href="{% url "Lushu_Mini.views.viewAnswers" quizId %}">{% trans "Go Checkout" %}</a></p>
@@ -29,6 +30,7 @@
             </div>
             <p><a id="share" class="longButton" >{% trans "Share and invite your friends to answer." %}</a></p>
           {% endif %}
+          </div>
         {% else %}
           {% if answerer and answer and answerer.id != account.id %}
             <ul class="list" id="answerList">

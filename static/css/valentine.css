@@ -145,23 +145,23 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 }
 #question{
 	color: #F752A3;
-	font-size: 18px;
-	height: 40px;
-	line-height: 40px;
+	font-size: 16px;
+	line-height: 1;
 	text-align: center;
 	font-weight: bolder;
-	margin: 30px 0px;
+	margin: 30px 20px 10px 20px;
 }
 #question>img{
-	height: 36px;
-	width: 36px;
+	height: 30px;
+	width: 30px;
 	border-radius: 20px;
 	margin-right: 10px;
 	vertical-align: middle;
 }
 #description{
 	text-align: center;
-	font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 30px;
 }
 #location{
 	height: 34px;
@@ -335,6 +335,12 @@ input[type="text"], input[type="email"], input[type="search"], input[type="passw
 }
 #questionBox{
     margin-bottom: 50px;
+}
+#GuideBox{
+    position: fixed;
+    bottom: 20px;
+    left: 0px;
+    right: 0px;
 }
 
 /** 屏幕自适应 **/
