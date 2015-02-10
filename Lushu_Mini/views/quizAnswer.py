@@ -62,7 +62,8 @@ def viewAnswers(request, quizId):
         "account": account,
         "myAnswer": myAnswer,
         "answers": answers,
-        "shareUrl": shareUrl
+        "shareUrl": shareUrl,
+        "quizImageUrl": request.build_absolute_uri(quiz.question.imageUrl)
     })
 
 
