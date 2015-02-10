@@ -60,7 +60,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages"
+    "django.contrib.messages.context_processors.messages",
+    "WechatApi.context_processors.default"
 )
 
 ROOT_URLCONF = 'Lushu_Mini.urls'
@@ -76,7 +77,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lushu_mini',
         'USER': 'root',
-        'PASSWORD': '1q2w3e4r',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': ''
     }
@@ -112,9 +113,3 @@ TEMPLATE_DIRS = (
 
 
 WECHAT_DEBUG = True
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
