@@ -1,1 +1,3 @@
-# Lushu_Mini
+Wechat Polling App.
+
+For fun.
